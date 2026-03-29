@@ -27,14 +27,14 @@
     }
 
     header {
-      padding: 50px 20px 30px 20px;
-      background: linear-gradient(135deg, #4b0082, #800080);
-      color: #fff;
-      font-size: 3rem;
-      font-weight: bold;
-      letter-spacing: 2px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-      text-align: center;
+  padding: 20px 20px 15px 20px; /* reduced top and bottom padding */
+  background: linear-gradient(135deg, #4b0082, #800080);
+  color: #fff;
+  font-size: 1.8rem; /* reduced font size */
+  font-weight: bold;
+  letter-spacing: 1px; /* slightly tighter letters */
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+  text-align: center;
     }
 
     nav {
@@ -61,24 +61,25 @@
     }
 
     .videos {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 30px;
-      margin-bottom: 60px;
-    }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px; /* slightly reduced gap */
+  margin: 20px auto 40px auto; /* more spacing from page edges */
+}
 
-    video {
-      width: 400px;
-      border-radius: 20px;
-      border: 3px solid #800080;
-      box-shadow: 0 10px 25px rgba(128,0,128,0.5);
-      transition: transform 0.3s;
-    }
+video {
+  width: 320px; /* reduced size */
+  border-radius: 30px; /* more rounded for luxury feel */
+  border: 3px solid #800080; /* purple luxury border */
+  box-shadow: 0 8px 20px rgba(128,0,128,0.5); /* soft glow shadow */
+  transition: transform 0.3s, box-shadow 0.3s;
+}
 
-    video:hover {
-      transform: scale(1.05);
-    }
+video:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 25px rgba(128,0,128,0.7); /* stronger hover effect */
+}
 
     section {
       max-width: 900px;
