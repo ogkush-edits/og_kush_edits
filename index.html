@@ -4,58 +4,64 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>OG Kush Edits</title>
-<p>Where visuals hit harder than words.</p>
+
 <style>
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', sans-serif;
 }
 
 body {
-  background: #0a0a0a;
-  color: white;
+  background: #0b0b0b;
+  color: #fff;
 }
 
 /* NAVBAR */
 header {
-  position: sticky;
-  top: 0;
-  background: rgba(0,0,0,0.9);
-  padding: 20px;
-  text-align: center;
-  font-size: 22px;
-  letter-spacing: 2px;
+  position: fixed;
+  width: 100%;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+}
 
-.neon {
+.logo {
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.logo span {
   color: #00f7ff;
 }
 
 /* HERO */
 .hero {
-  height: 90vh;
+  height: 100vh;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  background: linear-gradient(to bottom, #000, #0a0a0a);
+  justify-content: center;
+  flex-direction: column;
   text-align: center;
-  padding: 20px;
-Edits That Don’t Blend In — They Take Over }
+  background: radial-gradient(circle, #0b0b0b, #000);
+}
 
 .hero h1 {
-  font-size: 42px;
+  font-size: 48px;
   margin-bottom: 10px;
 }
 
 .hero p {
-  opacity: 0.7;
+  opacity: 0.6;
 }
 
 .btn {
-  margin-top: 20px;
-  padding: 12px 28px;
+  margin-top: 25px;
+  padding: 12px 30px;
   border: 1px solid #00f7ff;
   color: #00f7ff;
   text-decoration: none;
@@ -69,93 +75,95 @@ Edits That Don’t Blend In — They Take Over }
 
 /* SECTIONS */
 section {
-  padding: 80px 20px;
-  text-align: center;
+  padding: 100px 40px;
 }
 
 /* PORTFOLIO */
 .portfolio {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 30px;
   margin-top: 40px;
 }
 
-.video-card {
+.card {
   background: #111;
-  padding: 10px;
-  border-radius: 12px;
+  border-radius: 15px;
+  overflow: hidden;
   transition: 0.3s;
 }
 
-.video-card:hover {
-  box-shadow: 0 0 25px #00f7ff33;
-  transform: translateY(-5px);
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 30px #00f7ff22;
 }
 
 video {
   width: 100%;
-  border-radius: 10px;
+  display: block;
 }
 
-/* TEXT SECTIONS */
-.content-text {
-  max-width: 600px;
-  margin: auto;
-  opacity: 0.8;
+/* TEXT */
+.section-title {
+  text-align: center;
+  font-size: 28px;
+}
+
+.section-text {
+  max-width: 700px;
+  margin: 20px auto;
+  text-align: center;
+  opacity: 0.7;
 }
 
 /* CONTACT */
 .contact a {
   color: #00f7ff;
   text-decoration: none;
-  font-size: 18px;
 }
 
 /* FOOTER */
 footer {
   text-align: center;
-  padding: 20px;
+  padding: 30px;
   border-top: 1px solid #222;
   font-size: 14px;
-<p>OG_kush_edits — Built Different. </p> }
+}
 </style>
 </head>
 
 <body>
 
 <header>
-  OG_<span class="neon">KUSH</span>_EDITS
+  <div class="logo">OG_<span>KUSH</span>_EDITS</div>
 </header>
 
 <section class="hero">
-  <h1>Premium Video Editing</h1>
-  <p>Clean. Luxury. High-quality edits.</p>
+  <h1>Edits That Dominate</h1>
+  <p>Clean • Sharp • Premium Visuals</p>
   <a href="#portfolio" class="btn">View Portfolio</a>
 </section>
 
 <section id="portfolio">
-  <h2 class="neon">Portfolio</h2>
+  <h2 class="section-title">Portfolio</h2>
 
   <div class="portfolio">
 
-    <div class="video-card">
-      <video controls autoplay muted loop>
+    <div class="card">
+      <video autoplay muted loop controls>
         <source src="VID-20260328-WA0036.mp4" type="video/mp4">
       </video>
     </div>
 
-    <div class="video-card">
-      <video controls autoplay muted loop>
+    <div class="card">
+      <video autoplay muted loop controls>
         <source src="VID-20260328-WA0035.mp4" type="video/mp4">
       </video>
     </div>
 
-    <div class="video-card">
-      <video controls autoplay muted loop>
+    <div class="card">
+      <video autoplay muted loop controls>
         <source src="VID-20260328-WA0034.mp4" type="video/mp4">
-      <p>Like the vibe? Don’t just watch 
-        LIKE • SHARE • SUBSCRIBE</p>
       </video>
     </div>
 
@@ -163,36 +171,23 @@ footer {
 </section>
 
 <section>
-  <h2 class="neon">Services</h2>
-  <p class="content-text">
-OG_kush_edits is a premium video editing brand focused on delivering high-quality, visually striking edits with a clean and modern luxury style. Every project is crafted with attention to detail, smooth transitions, and cinematic effects to create content that stands out.
-From creative edits to advanced visual storytelling, OG_kush_edits is built for those who want next-level quality and a unique aesthetic. The goal is simple — turn ideas into powerful visuals that leave an impact. If you’re looking for average, this isn’t for you. OG_kush_edits is built for those who want their content to look elite, bold, and unforgettable.
-    And don't forget to subscribe my channel :- OG_kush_edits
-    </p>
-  </p>
-</section>
+  <h2 class="section-title">About</h2>
 
-<section>
-  <h2 class="neon">About</h2>
-  <p class="content-text">
-OG_kush_edits isn’t here to play — it’s here to take over.
-  Every edit is built to hit harder, look sharper, and stand way above the basic crowd.
-    
-    No weak transitions, no boring visuals — only premium edits that make people stop scrolling.
+  <p class="section-text">
+  OG_kush_edits isn’t here to play — it’s here to take over. Every edit is built to hit harder, look sharper, and stand way above the basic crowd.
 
-If you’re watching this, you already know the vibe. This is not for average creators — this is for those who want their content to look elite, clean, and absolutely next level.
+  No weak transitions. No boring visuals. Only premium edits that make people stop scrolling.
 
-Like what you see? Then don’t just watch — 
-LIKE, SHARE, and SUBSCRIBE to the channel and be part of something that actually stands out.
-
-OG_kush_edits — where edits don’t just look good… they dominate.
+  LIKE • SHARE • SUBSCRIBE and be part of something that actually stands out.
   </p>
 </section>
 
 <section class="contact">
-  <h2 class="neon">Contact</h2>
-  <p>For purchase of edits, contact me at:</p>
-  <p>
+  <h2 class="section-title">Contact</h2>
+
+  <p class="section-text">
+    For purchase of edits:
+    <br><br>
     <a href="mailto:soumyadms30b@gmail.com">
       soumyadms30b@gmail.com
     </a>
@@ -200,8 +195,7 @@ OG_kush_edits — where edits don’t just look good… they dominate.
 </section>
 
 <footer>
-  LIKE • SHARE • SUBSCRIBE
-  © 2026 OG_kush_edits | SINCE SEPTEMBER 29, 2023 | ALL COPYRIGHT DESERVED 
+  © OG_kush_edits | All rights reserved.
 </footer>
 
 </body>
