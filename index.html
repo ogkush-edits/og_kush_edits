@@ -153,10 +153,37 @@ video:hover {
 
   <main>
     <div class="videos">
-  <video src="VID-20260328-WA0034.mp4" muted autoplay loop playsinline></video>
-  <video src="VID-20260328-WA0035.mp4" muted autoplay loop playsinline></video>
-  <video src="VID-20260328-WA0036.mp4" muted autoplay loop playsinline></video>
-    </div>
+  <video id="video1" src="VID-20260328-WA0034.mp4" muted playsinline controls></video>
+  <video id="video2" src="VID-20260328-WA0035.mp4" muted playsinline controls></video>
+  <video id="video3" src="VID-20260328-WA0036.mp4" muted playsinline controls></video>
+</div>
+
+<script>
+  // Play first video immediately
+  const video1 = document.getElementById('video1');
+  const video2 = document.getElementById('video2');
+  const video3 = document.getElementById('video3');
+
+  video1.play();
+
+  // Function to play video when it scrolls into view
+  function playOnScroll(video) {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          video.play();
+        } else {
+          video.pause();
+        }
+      });
+    }, { threshold: 0.5 }); // play when 50% of video is visible
+
+    observer.observe(video);
+  }
+
+  playOnScroll(video2);
+  playOnScroll(video3);
+</script>
 
     <section id="about" style="max-width:900px; margin:60px auto; text-align:center; line-height:1.6; padding:20px;">
   <h2 style="font-size:2rem; margin-bottom:20px; color:#dda0dd;">About OG_Kush_Edits</h2>
