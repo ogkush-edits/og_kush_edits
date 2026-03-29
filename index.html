@@ -1,201 +1,257 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OG Kush Edits</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OG Kush Edits</title>
+  <style>
+    /* Global Styles */
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #1c1c1c;
+      color: #f5f5f5;
+      overflow-x: hidden;
+    }
 
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Segoe UI', sans-serif;
-}
+    /* Particle Canvas */
+    #particles {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      top: 0;
+      left: 0;
+    }
 
-body {
-  background: #0b0b0b;
-  color: #fff;
-}
+    header {
+      padding: 50px 20px 30px 20px;
+      background: linear-gradient(135deg, #4b0082, #800080);
+      color: #fff;
+      font-size: 3rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      text-align: center;
+    }
 
-/* NAVBAR */
-header {
-  position: fixed;
-  width: 100%;
-  padding: 20px 40px;
-  display: flex;
-  justify-content: center;  /* center horizontally */
-  align-items: center;
-  background: rgba(0,0,0,0.7);
-  backdrop-filter: blur(10px);
-  z-index: 1000;
-}
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 20px 0;
+      background: #2c2c2c;
+      font-size: 1.1rem;
+    }
 
-.logo {
-  font-weight: bold;
-  letter-spacing: 2px;
-}
+    nav a {
+      color: #dda0dd;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
 
-.logo span {
-  color: #00f7ff;
-}
+    nav a:hover {
+      color: #fff;
+    }
 
-/* HERO */
-.hero {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  text-align: center;
-  background: radial-gradient(circle, #0b0b0b, #000);
-}
+    main {
+      padding: 40px 20px;
+    }
 
-.hero h1 {
-  font-size: 48px;
-  margin-bottom: 10px;
-}
+    .videos {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+      margin-bottom: 60px;
+    }
 
-.hero p {
-  opacity: 0.6;
-}
+    video {
+      width: 400px;
+      border-radius: 20px;
+      border: 3px solid #800080;
+      box-shadow: 0 10px 25px rgba(128,0,128,0.5);
+      transition: transform 0.3s;
+    }
 
-.btn {
-  margin-top: 25px;
-  padding: 12px 30px;
-  border: 1px solid #00f7ff;
-  color: #00f7ff;
-  text-decoration: none;
-  transition: 0.3s;
-}
+    video:hover {
+      transform: scale(1.05);
+    }
 
-.btn:hover {
-  background: #00f7ff;
-  color: black;
-}
+    section {
+      max-width: 900px;
+      margin: 0 auto 60px auto;
+      text-align: center;
+      line-height: 1.6;
+    }
 
-/* SECTIONS */
-section {
-  padding: 100px 40px;
-}
+    section h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #dda0dd;
+    }
 
-/* PORTFOLIO */
-.portfolio {
-  display: flex;
-  flex-direction: column;
-  align-items: center;   /* centers everything */
-  gap: 40px;
-  margin-top: 40px;
-}
+    section p {
+      font-size: 1.1rem;
+    }
 
-.card {
-  width: 100%;
-  max-width: 400px;   /* controls size (change if needed) */
-  background: #111;
-  border-radius: 15px;
-  padding: 10px;
-}
+    .services {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 20px;
+    }
 
-video {
-  width: 100%;
-  border-radius: 10px;
-}
+    .service-box {
+      background: rgba(44,44,44,0.9);
+      border: 2px solid #800080;
+      border-radius: 20px;
+      padding: 25px;
+      width: 250px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
 
-/* TEXT */margin-bottom: 10px;
-.section-title {
-  text-align: center;
-  font-size: 28px;
-}
+    .service-box:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(128,0,128,0.6);
+    }
 
-.section-text {
-  max-width: 700px;
-  margin: 20px auto;
-  text-align: center;
-  opacity: 0.7;
-}
+    footer {
+      background: #111;
+      color: #888;
+      padding: 20px 10px;
+      font-size: 0.95rem;
+      border-top: 2px solid #800080;
+      text-align: center;
+    }
 
-/* CONTACT */
-.contact a {
-  color: #00f7ff;
-  text-decoration: none;
-}
+    a {
+      color: #dda0dd;
+      text-decoration: none;
+    }
 
-/* FOOTER */
-footer {
-  text-align: always center;
-  padding: 30pmargin-top: 40px;x;
-  border-top: 1px solid #222;
-  font-size: 14px;
-}
-</style>
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
-
 <body>
+  <!-- Particle background -->
+  <canvas id="particles"></canvas>
 
-<header>
-  <div class="logo">OG_<span>KUSH</span>_EDITS</div>
-</header>
+  <header>OG Kush Edits</header>
 
-<section class="hero">
-  <h1>Edits That Dominate</h1>
-  <p>Clean • Sharp • Premium Visuals</p>
-  <a href="#portfolio" class="btn">View Portfolio</a>
-</section>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact</a>
+  </nav>
 
-<section id="portfolio">
-  <h2 class="section-title">Portfolio</h2>
-
-  <div class="portfolio">
-
-    <div class="card">
-      <video autoplay muted loop controls>
-        <source src="VID-20260328-WA0036.mp4" type="video/mp4">
-      </video>
+  <main>
+    <div class="videos">
+      <video src="VID-20260328-WA0034.mp4" controls></video>
+      <video src="VID-20260328-WA0035.mp4" controls></video>
+      <video src="VID-20260328-WA0036.mp4" controls></video>
     </div>
 
-    <div class="card">
-      <video autoplay muted loop controls>
-        <source src="VID-20260328-WA0035.mp4" type="video/mp4">
-      </video>
-    </div>
+    <section id="about">
+      <h2>About OG Kush Edits</h2>
+      <p>We create premium, high-quality video edits with style and luxury in mind. Perfect for social media, showcasing creativity, and elevating your content.</p>
+    </section>
 
-    <div class="card">
-      <video autoplay muted loop controls>
-        <source src="VID-20260328-WA0034.mp4" type="video/mp4">
-      </video>
-    </div>
+    <section id="services">
+      <h2>Our Services</h2>
+      <div class="services">
+        <div class="service-box">
+          <h3>Social Media Edits</h3>
+          <p>Eye-catching edits for Instagram, TikTok, and YouTube to grow your audience.</p>
+        </div>
+        <div class="service-box">
+          <h3>Promotional Videos</h3>
+          <p>High-quality promotional content for brands and creators that stands out.</p>
+        </div>
+        <div class="service-box">
+          <h3>Custom Requests</h3>
+          <p>Tailored video edits based on your unique style and needs.</p>
+        </div>
+      </div>
+    </section>
 
-  </div>
-</section>
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>For collaborations or inquiries, reach us at <a href="mailto:soumyadms30b@gmail.com">soumyadms30b@gmail.com</a></p>
+    </section>
+  </main>
 
-<section>
-  <h2 class="section-title">About</h2>
-  
+  <footer>
+    ©️ og_kush_edits | all rights reserved
+  </footer>
 
-  <p class="section-text">
-  OG_kush_edits isn’t here to play — it’s here to take over. Every edit is built to hit harder, look sharper, and stand way above the basic crowd.
+  <!-- Particle Script -->
+  <script>
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+    let particlesArray;
 
-  No weak transitions. No boring visuals. Only premium edits that make people stop scrolling.
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 
-  LIKE • SHARE • SUBSCRIBE and be part of something that actually stands out.
-  </p>
-</section>
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      init();
+    });
 
-<section class="contact">
-  <h2 class="section-title">Contact</h2>
+    class Particle {
+      constructor(x, y, size, speedX, speedY) {
+        this.x = x;
+        this.y = y;
+        this.size = size;
+        this.speedX = speedX;
+        this.speedY = speedY;
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
 
-  <p class="section-text">
-    For purchase of edits:
-    <br><br>
-    <a href="mailto:soumyadms30b@gmail.com">
-      soumyadms30b@gmail.com
-    </a>
-  </p>
-</section>
+        if (this.x > canvas.width || this.x < 0) this.speedX = -this.speedX;
+        if (this.y > canvas.height || this.y < 0) this.speedY = -this.speedY;
+      }
+      draw() {
+        ctx.fillStyle = 'rgba(218,112,214,0.7)';
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
 
-<footer>
-  © OG_kush_edits | All rights reserved.
-</footer>
+    function init() {
+      particlesArray = [];
+      const numberOfParticles = Math.floor((canvas.width * canvas.height) / 8000);
+      for (let i = 0; i < numberOfParticles; i++) {
+        let size = Math.random() * 4 + 1;
+        let x = Math.random() * canvas.width;
+        let y = Math.random() * canvas.height;
+        let speedX = (Math.random() - 0.5) * 1.5;
+        let speedY = (Math.random() - 0.5) * 1.5;
+        particlesArray.push(new Particle(x, y, size, speedX, speedY));
+      }
+    }
 
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particlesArray.forEach(particle => {
+        particle.update();
+        particle.draw();
+      });
+      requestAnimationFrame(animate);
+    }
+
+    init();
+    animate();
+  </script>
 </body>
 </html>
