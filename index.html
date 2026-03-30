@@ -7,7 +7,6 @@
   <!-- Google Fonts link for fancy Unicode -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Math:wght@700&display=swap" rel="stylesheet">
   <style>
-    /* Global Styles */
     body, html {
       margin: 0;
       padding: 0;
@@ -18,7 +17,6 @@
       overflow-x: hidden;
     }
 
-    /* Particle Canvas */
     #particles {
       position: fixed;
       width: 100%;
@@ -48,19 +46,10 @@
       font-size: 1.1rem;
     }
 
-    nav a {
-      color: #dda0dd;
-      text-decoration: none;
-      transition: color 0.3s;
-    }
+    nav a { color: #dda0dd; text-decoration: none; transition: color 0.3s; }
+    nav a:hover { color: #fff; }
 
-    nav a:hover {
-      color: #fff;
-    }
-
-    main {
-      padding: 40px 20px;
-    }
+    main { padding: 40px 20px; }
 
     .videos {
       display: flex;
@@ -96,9 +85,7 @@
       color: #dda0dd;
     }
 
-    section p {
-      font-size: 1.1rem;
-    }
+    section p { font-size: 1.1rem; }
 
     .services {
       display: flex;
@@ -122,7 +109,6 @@
       box-shadow: 0 15px 30px rgba(128,0,128,0.6);
     }
 
-    /* Portfolio Labels Glow Effect */
     .example-label {
       margin-bottom: 15px;
       margin-top: 20px;
@@ -138,21 +124,6 @@
       cursor: pointer;
     }
 
-    /* Tagline */
-    #tagline {
-      padding: 40px 20px;
-      text-align: center;
-      background: linear-gradient(135deg, #4b0082, #800080);
-      color: #fff;
-      font-size: 1.5rem;
-      font-weight: bold;
-      letter-spacing: 1px;
-      border-radius: 15px;
-      margin: 40px auto;
-      max-width: 900px;
-      box-shadow: 0 8px 25px rgba(128,0,128,0.6);
-    }
-
     footer {
       background: #111;
       color: #888;
@@ -161,10 +132,12 @@
       border-top: 2px solid #800080;
       text-align: center;
     }
+
+    a { color: inherit; text-decoration: none; }
+    a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
-  <!-- Particle background -->
   <canvas id="particles"></canvas>
 
   <header>𝑶𝑮_𝒌𝒖𝒔𝒉_𝒆𝒅𝒊𝒕</header>
@@ -177,39 +150,6 @@
   </nav>
 
   <main>
-    <!-- Videos Section -->
-    <div class="videos">
-      <video id="video1" src="VID-20260328-WA0034.mp4" unmuted playsinline controls></video>
-      <video id="video2" src="VID-20260328-WA0035.mp4" unmuted playsinline controls></video>
-      <video id="video3" src="VID-20260328-WA0036.mp4" unmuted playsinline controls></video>
-    </div>
-
-    <script>
-      // Scroll-triggered video play
-      const video1 = document.getElementById('video1');
-      const video2 = document.getElementById('video2');
-      const video3 = document.getElementById('video3');
-
-      video1.play();
-
-      function playOnScroll(video) {
-        const observer = new IntersectionObserver(entries => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              video.play();
-            } else {
-              video.pause();
-            }
-          });
-        }, { threshold: 0.5 });
-
-        observer.observe(video);
-      }
-
-      playOnScroll(video2);
-      playOnScroll(video3);
-    </script>
-
     <!-- About Section -->
     <section id="about">
       <h2>About 𝑶𝑮_𝒌𝒖𝒔𝒉_𝒆𝒅𝒊𝒕</h2>
@@ -239,33 +179,34 @@
       </div>
     </section>
 
-    <!-- Portfolio Section -->
+    <!-- Portfolio Section with scroll-play -->
     <section id="portfolio">
       <h2>Portfolio</h2>
       <p>Here are some examples of my edits. Each video showcases creativity, style, and attention to detail.</p>
       <div class="videos">
         <div class="example-label">Example 1</div>
-        <video src="VID-20260328-WA0034.mp4" unmuted playsinline controls></video>
+        <video id="example1" src="VID-20260328-WA0034.mp4" playsinline controls></video>
 
         <div class="example-label">Example 2</div>
-        <video src="VID-20260328-WA0035.mp4" unmuted playsinline controls></video>
+        <video id="example2" src="VID-20260328-WA0035.mp4" playsinline controls></video>
 
         <div class="example-label">Example 3</div>
-        <video src="VID-20260328-WA0036.mp4" unmuted playsinline controls></video>
+        <video id="example3" src="VID-20260328-WA0036.mp4" playsinline controls></video>
       </div>
     </section>
 
     <!-- Contact Section -->
     <section id="contact">
       <h2>Contact</h2>
-      <p>For collaborations or inquiries, reach us at <a href="mailto:soumyadms30b@gmail.com">soumyadms30b@gmail.com</a></p>
+      <p>For collaborations or inquiries, reach us at soumyadms30b@gmail.com</p>
     </section>
 
-    <!-- Tagline -->
-    <section id="tagline">Elevate Your Vision. Transform Every Frame into Art.</section>
+    <!-- Tagline as normal text -->
+    <section>
+      Elevate Your Vision. Transform Every Frame into Art.
+    </section>
   </main>
 
-  <!-- Footer -->
   <footer>
     © og_kush_edits | all rights reserved
   </footer>
@@ -296,7 +237,6 @@
       update() {
         this.x += this.speedX;
         this.y += this.speedY;
-
         if (this.x > canvas.width || this.x < 0) this.speedX = -this.speedX;
         if (this.y > canvas.height || this.y < 0) this.speedY = -this.speedY;
       }
@@ -332,6 +272,29 @@
 
     init();
     animate();
+  </script>
+
+  <!-- Scroll-play for Portfolio videos -->
+  <script>
+    const portfolioVideos = [
+      document.getElementById('example1'),
+      document.getElementById('example2'),
+      document.getElementById('example3')
+    ];
+
+    portfolioVideos.forEach(video => {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            video.play();   // auto-play when in view
+          } else {
+            video.pause();  // pause when out of view
+          }
+        });
+      }, { threshold: 0.5 }); // play when 50% visible
+
+      observer.observe(video);
+    });
   </script>
 </body>
 </html>
