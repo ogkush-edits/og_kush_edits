@@ -194,6 +194,47 @@
         <video id="example3" src="VID-20260328-WA0036.mp4" playsinline controls></video>
       </div>
     </section>
+    <section style="max-width:900px; margin:60px auto; text-align:center;">
+  <h2 style="color:#dda0dd;">Be honest… did that edit hit different?</h2>
+
+  <div style="margin-top:20px;">
+    <button onclick="vote('yes')" class="poll-btn">Obviously 🔥</button>
+    <button onclick="vote('no')" class="poll-btn">Not really 😶</button>
+  </div>
+
+  <p id="result" style="margin-top:20px; font-size:1.1rem;"></p>
+
+  <style>
+    .poll-btn {
+      background: linear-gradient(135deg, #800080, #ff69b4);
+      border: none;
+      color: white;
+      padding: 12px 25px;
+      margin: 10px;
+      font-size: 1rem;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 5px 15px rgba(128,0,128,0.5);
+    }
+
+    .poll-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 20px rgba(255,105,180,0.7);
+    }
+  </style>
+
+  <script>
+    function vote(choice) {
+      const result = document.getElementById("result");
+      if (choice === "yes") {
+        result.innerHTML = "🔥 Knew it. Real ones recognize quality.";
+      } else {
+        result.innerHTML = "😶 Respect. I’ll come back even stronger.";
+      }
+    }
+  </script>
+    </section>
 
     <!-- Contact Section -->
     <section id="contact">
