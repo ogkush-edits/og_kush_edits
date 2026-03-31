@@ -6,6 +6,62 @@
   <title>𝑶𝑮_𝒌𝒖𝒔𝒉_𝒆𝒅𝒊𝒕</title>
   <!-- Google Fonts link for fancy Unicode -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Math:wght@700&display=swap" rel="stylesheet">
+
+  <!-- Firebase SDKs -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
+    import { getFirestore, doc, getDoc, setDoc, updateDoc, increment } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyA3-HMhnsv9rPft5N7OgI7nh_nQDq0kBCo",
+      authDomain: "og-kush-edits.firebaseapp.com",
+      projectId: "og-kush-edits",
+      storageBucket: "og-kush-edits.firebasestorage.app",
+      messagingSenderId: "258288099551",
+      appId: "1:258288099551:web:7cd88c9a9f64af2c52c96a"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    async function vote(choice) {
+      const userId = localStorage.getItem("userId") || crypto.randomUUID();
+      localStorage.setItem("userId", userId);
+
+      const voteRef = doc(db, "polls", "editVote");
+      const voteDoc = await getDoc(voteRef);
+      const votes = voteDoc.exists() ? voteDoc.data() : { yes: 0, no: 0, voters: [] };
+
+      if (votes.voters.includes(userId)) {
+        document.getElementById("result").innerText = "❌ You already voted!";
+        return;
+      }
+
+      votes.voters.push(userId);
+      votes[choice] += 1;
+
+      await setDoc(voteRef, votes);
+      updateResult(votes);
+    }
+
+    async function loadVotes() {
+      const voteRef = doc(db, "polls", "editVote");
+      const voteDoc = await getDoc(voteRef);
+      if (voteDoc.exists()) updateResult(voteDoc.data());
+    }
+
+    function updateResult(votes) {
+      const total = votes.yes + votes.no;
+      const yesPercent = total ? Math.round((votes.yes / total) * 100) : 0;
+      const noPercent = total ? Math.round((votes.no / total) * 100) : 0;
+      document.getElementById("result").innerHTML = `
+        🔥 Yes: ${yesPercent}% | 😶 No: ${noPercent}%
+      `;
+    }
+
+    window.onload = loadVotes;
+  </script>
+
   <style>
     body, html {
       margin: 0;
@@ -17,14 +73,7 @@
       overflow-x: hidden;
     }
 
-    #particles {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      top: 0;
-      left: 0;
-    }
+    #particles { position: fixed; width: 100%; height: 100%; z-index: -1; top: 0; left: 0; }
 
     header {
       padding: 20px 20px 15px 20px;
@@ -37,103 +86,32 @@
       text-align: center;
     }
 
-    nav {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      padding: 20px 0;
-      background: #2c2c2c;
-      font-size: 1.1rem;
-    }
-
+    nav { display: flex; justify-content: center; gap: 30px; padding: 20px 0; background: #2c2c2c; font-size: 1.1rem; }
     nav a { color: #dda0dd; text-decoration: none; transition: color 0.3s; }
     nav a:hover { color: #fff; }
 
     main { padding: 40px 20px; }
 
-    .videos {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
-      margin: 20px auto 40px auto;
-    }
+    .videos { display: flex; flex-direction: column; align-items: center; gap: 20px; margin: 20px auto 40px auto; }
+    video { width: 320px; border-radius: 30px; border: 3px solid #800080; box-shadow: 0 8px 20px rgba(128,0,128,0.5); transition: transform 0.3s, box-shadow 0.3s; }
+    video:hover { transform: scale(1.05); box-shadow: 0 12px 25px rgba(128,0,128,0.7); }
 
-    video {
-      width: 320px;
-      border-radius: 30px;
-      border: 3px solid #800080;
-      box-shadow: 0 8px 20px rgba(128,0,128,0.5);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    video:hover {
-      transform: scale(1.05);
-      box-shadow: 0 12px 25px rgba(128,0,128,0.7);
-    }
-
-    section {
-      max-width: 900px;
-      margin: 0 auto 60px auto;
-      text-align: center;
-      line-height: 1.6;
-    }
-
-    section h2 {
-      font-size: 2rem;
-      margin-bottom: 20px;
-      color: #dda0dd;
-    }
-
+    section { max-width: 900px; margin: 0 auto 60px auto; text-align: center; line-height: 1.6; }
+    section h2 { font-size: 2rem; margin-bottom: 20px; color: #dda0dd; }
     section p { font-size: 1.1rem; }
 
-    .services {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 30px;
-      margin-top: 20px;
-    }
+    .services { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin-top: 20px; }
+    .service-box { background: rgba(44,44,44,0.9); border: 2px solid #800080; border-radius: 20px; padding: 25px; width: 250px; transition: transform 0.3s, box-shadow 0.3s; }
+    .service-box:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(128,0,128,0.6); }
 
-    .service-box {
-      background: rgba(44,44,44,0.9);
-      border: 2px solid #800080;
-      border-radius: 20px;
-      padding: 25px;
-      width: 250px;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
+    .example-label { margin-bottom: 15px; margin-top: 20px; font-weight: bold; color: #dda0dd; font-size: 1.2rem; transition: 0.3s; }
+    .example-label:hover { color: #fff; text-shadow: 0 0 10px #dda0dd, 0 0 20px #800080, 0 0 30px #dda0dd; cursor: pointer; }
 
-    .service-box:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 30px rgba(128,0,128,0.6);
-    }
+    .poll-btn { background: linear-gradient(135deg, #800080, #ff69b4); border: none; color: white; padding: 12px 25px; margin: 10px; font-size: 1rem; border-radius: 25px; cursor: pointer; transition: 0.3s; box-shadow: 0 5px 15px rgba(128,0,128,0.5); }
+    .poll-btn:hover { transform: scale(1.1); box-shadow: 0 8px 20px rgba(255,105,180,0.7); }
 
-    .example-label {
-      margin-bottom: 15px;
-      margin-top: 20px;
-      font-weight: bold;
-      color: #dda0dd;
-      font-size: 1.2rem;
-      transition: 0.3s;
-    }
-
-    .example-label:hover {
-      color: #fff;
-      text-shadow: 0 0 10px #dda0dd, 0 0 20px #800080, 0 0 30px #dda0dd;
-      cursor: pointer;
-    }
-
-    footer {
-      background: #111;
-      color: #888;
-      padding: 20px 10px;
-      font-size: 0.95rem;
-      border-top: 2px solid #800080;
-      text-align: center;
-    }
-
-    a { color: inherit; text-decoration: none; }
+    footer { background: #111; color: #888; padding: 20px 10px; font-size: 0.95rem; border-top: 2px solid #800080; text-align: center; }
+    a { color: #ff69b4; text-decoration: none; }
     a:hover { text-decoration: underline; }
   </style>
 </head>
@@ -150,195 +128,79 @@
   </nav>
 
   <main>
-    <!-- About Section -->
     <section id="about">
       <h2>About 𝑶𝑮_𝒌𝒖𝒔𝒉_𝒆𝒅𝒊𝒕</h2>
       <p>
         OG_Kush_Edits is your premier destination for luxury video edits and cinematic content creation.
-        We specialize in transforming ordinary footage into visually stunning experiences with sleek, professional, and highly creative edits.
-        Our mission is to elevate your content, amplify your style, and make every frame an unforgettable moment.
+        We specialize in transforming ordinary footage into visually stunning experiences.
       </p>
     </section>
 
-    <!-- Services Section -->
     <section id="services">
       <h2>Our Services</h2>
       <div class="services">
-        <div class="service-box">
-          <h3>Social Media Edits</h3>
-          <p>Eye-catching edits for Instagram, TikTok, and YouTube to grow your audience.</p>
-        </div>
-        <div class="service-box">
-          <h3>Promotional Videos</h3>
-          <p>High-quality promotional content for brands and creators that stands out.</p>
-        </div>
-        <div class="service-box">
-          <h3>Custom Requests</h3>
-          <p>Tailored video edits based on your unique style and needs.</p>
-        </div>
+        <div class="service-box"><h3>Social Media Edits</h3><p>Eye-catching edits for Instagram, TikTok, and YouTube.</p></div>
+        <div class="service-box"><h3>Promotional Videos</h3><p>High-quality content for brands and creators.</p></div>
+        <div class="service-box"><h3>Custom Requests</h3><p>Tailored video edits for your unique style.</p></div>
       </div>
     </section>
 
-    <!-- Portfolio Section with scroll-play -->
     <section id="portfolio">
       <h2>Portfolio</h2>
-      <p>Here are some examples of my awesome edits. Each video showcases creativity, style, and attention to detail.</p>
+      <p>Here are some examples of my awesome edits:</p>
       <div class="videos">
         <div class="example-label">Example 1</div>
         <video id="example1" src="VID-20260328-WA0034.mp4" playsinline controls></video>
-
         <div class="example-label">Example 2</div>
         <video id="example2" src="VID-20260328-WA0035.mp4" playsinline controls></video>
-
         <div class="example-label">Example 3</div>
         <video id="example3" src="VID-20260328-WA0036.mp4" playsinline controls></video>
       </div>
     </section>
+
     <section style="max-width:900px; margin:60px auto; text-align:center;">
-  <h2 style="color:#dda0dd;">Be honest… did that edit hit different?</h2>
-
-  <div style="margin-top:20px;">
-    <button onclick="vote('yes')" class="poll-btn">Obviously 🔥</button>
-    <button onclick="vote('no')" class="poll-btn">Not really 😶</button>
-  </div>
-
-  <p id="result" style="margin-top:20px; font-size:1.1rem;"></p>
-
-  <style>
-    .poll-btn {
-      background: linear-gradient(135deg, #800080, #ff69b4);
-      border: none;
-      color: white;
-      padding: 12px 25px;
-      margin: 10px;
-      font-size: 1rem;
-      border-radius: 25px;
-      cursor: pointer;
-      transition: 0.3s;
-      box-shadow: 0 5px 15px rgba(128,0,128,0.5);
-    }
-
-    .poll-btn:hover {
-      transform: scale(1.1);
-      box-shadow: 0 8px 20px rgba(255,105,180,0.7);
-    }
-  </style>
-
-  <script>
-    function vote(choice) {
-      const result = document.getElementById("result");
-      if (choice === "yes") {
-        result.innerHTML = "🔥 Knew it. Real ones recognize quality.";
-      } else {
-        result.innerHTML = "😶 Respect. I’ll come back even stronger.";
-      }
-    }
-  </script>
+      <h2 style="color:#dda0dd;">Be honest… did that edit hit different?</h2>
+      <div style="margin-top:20px;">
+        <button onclick="vote('yes')" class="poll-btn">Obviously 🔥</button>
+        <button onclick="vote('no')" class="poll-btn">Not really 😶</button>
+      </div>
+      <p id="result" style="margin-top:20px; font-size:1.1rem;"></p>
     </section>
 
-    <!-- Contact Section -->
     <section id="contact">
       <h2>Contact</h2>
       <p>
-  For collaborations or inquiries, reach us at 
-  <a href="mailto:soumyadms30b@gmail.com" style="color: #ff69b4; text-decoration: none;">
-    soumyadms30b@gmail.com
-  </a>
+        For collaborations, reach us at 
+        <a href="mailto:soumyadms30b@gmail.com">soumyadms30b@gmail.com</a>
       </p>
     </section>
 
-    <!-- Tagline as normal text -->
     <section>
       Elevate Your Vision. Transform Every Frame into Art.
     </section>
   </main>
 
-  <footer>
-    © og_kush_edits | all rights reserved
-  </footer>
+  <footer>© og_kush_edits | all rights reserved</footer>
 
   <!-- Particle Script -->
   <script>
     const canvas = document.getElementById('particles');
     const ctx = canvas.getContext('2d');
     let particlesArray;
-
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
+    window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; init(); });
 
-    window.addEventListener('resize', () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      init();
-    });
+    class Particle { constructor(x,y,s,sX,sY){this.x=x;this.y=y;this.size=s;this.speedX=sX;this.speedY=sY;} update(){this.x+=this.speedX;this.y+=this.speedY;if(this.x>canvas.width||this.x<0)this.speedX=-this.speedX;if(this.y>canvas.height||this.y<0)this.speedY=-this.speedY;} draw(){ctx.fillStyle='rgba(218,112,214,0.7)';ctx.beginPath();ctx.arc(this.x,this.y,this.size,0,Math.PI*2);ctx.fill();}}
+    function init(){particlesArray=[];const n=Math.floor((canvas.width*canvas.height)/8000);for(let i=0;i<n;i++){let s=Math.random()*4+1,x=Math.random()*canvas.width,y=Math.random()*canvas.height,sX=(Math.random()-0.5)*1.5,sY=(Math.random()-0.5)*1.5;particlesArray.push(new Particle(x,y,s,sX,sY));}}
+    function animate(){ctx.clearRect(0,0,canvas.width,canvas.height);particlesArray.forEach(p=>{p.update();p.draw();});requestAnimationFrame(animate);}
+    init();animate();
 
-    class Particle {
-      constructor(x, y, size, speedX, speedY) {
-        this.x = x;
-        this.y = y;
-        this.size = size;
-        this.speedX = speedX;
-        this.speedY = speedY;
-      }
-      update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-        if (this.x > canvas.width || this.x < 0) this.speedX = -this.speedX;
-        if (this.y > canvas.height || this.y < 0) this.speedY = -this.speedY;
-      }
-      draw() {
-        ctx.fillStyle = 'rgba(218,112,214,0.7)';
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    }
-
-    function init() {
-      particlesArray = [];
-      const numberOfParticles = Math.floor((canvas.width * canvas.height) / 8000);
-      for (let i = 0; i < numberOfParticles; i++) {
-        let size = Math.random() * 4 + 1;
-        let x = Math.random() * canvas.width;
-        let y = Math.random() * canvas.height;
-        let speedX = (Math.random() - 0.5) * 1.5;
-        let speedY = (Math.random() - 0.5) * 1.5;
-        particlesArray.push(new Particle(x, y, size, speedX, speedY));
-      }
-    }
-
-    function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particlesArray.forEach(particle => {
-        particle.update();
-        particle.draw();
-      });
-      requestAnimationFrame(animate);
-    }
-
-    init();
-    animate();
-  </script>
-
-  <!-- Scroll-play for Portfolio videos -->
-  <script>
-    const portfolioVideos = [
-      document.getElementById('example1'),
-      document.getElementById('example2'),
-      document.getElementById('example3')
-    ];
-
-    portfolioVideos.forEach(video => {
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            video.play();   // auto-play when in view
-          } else {
-            video.pause();  // pause when out of view
-          }
-        });
-      }, { threshold: 0.5 }); // play when 50% visible
-
+    const portfolioVideos = [document.getElementById('example1'),document.getElementById('example2'),document.getElementById('example3')];
+    portfolioVideos.forEach(video=>{
+      const observer = new IntersectionObserver(entries=>{
+        entries.forEach(entry=>{if(entry.isIntersecting){video.play();}else{video.pause();}});
+      },{threshold:0.5});
       observer.observe(video);
     });
   </script>
