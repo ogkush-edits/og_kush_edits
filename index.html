@@ -7,44 +7,34 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Math:wght@700&display=swap" rel="stylesheet">
   <style>
-    body, html {
-      margin: 0; padding: 0; height: 100%;
-      font-family: 'Noto Sans Math', 'STIX Two Math', 'Cambria Math', serif;
-      background: #1c1c1c; color: #f5f5f5; overflow-x: hidden;
-    }
-    #particles { position: fixed; width: 100%; height: 100%; z-index: -1; top:0; left:0; }
-    header {
-      padding: 20px; background: linear-gradient(135deg, #4b0082, #800080);
-      color: #fff; font-size: 1.8rem; font-weight: bold; letter-spacing: 1px; text-align: center;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-    }
+    body, html { margin:0; padding:0; height:100%; font-family:'Noto Sans Math','STIX Two Math','Cambria Math', serif; background:#1c1c1c; color:#f5f5f5; overflow-x:hidden; }
+    #particles { position: fixed; width:100%; height:100%; z-index:-1; top:0; left:0; }
+    header { padding:20px 20px 15px 20px; background:linear-gradient(135deg,#4b0082,#800080); color:#fff; font-size:1.8rem; font-weight:bold; letter-spacing:1px; box-shadow:0 4px 15px rgba(0,0,0,0.5); text-align:center; }
     nav { display:flex; justify-content:center; gap:30px; padding:20px 0; background:#2c2c2c; font-size:1.1rem; }
     nav a { color:#dda0dd; text-decoration:none; transition:0.3s; }
     nav a:hover { color:#fff; }
     main { padding:40px 20px; }
-    .videos { display:flex; flex-direction:column; align-items:center; gap:20px; margin:20px auto 40px; }
-    video { width:320px; border-radius:30px; border:3px solid #800080; box-shadow:0 8px 20px rgba(128,0,128,0.5); transition:0.3s; }
+    .videos { display:flex; flex-direction:column; align-items:center; gap:20px; margin:20px auto 40px auto; }
+    video { width:320px; border-radius:30px; border:3px solid #800080; box-shadow:0 8px 20px rgba(128,0,128,0.5); transition:transform 0.3s, box-shadow 0.3s; }
     video:hover { transform:scale(1.05); box-shadow:0 12px 25px rgba(128,0,128,0.7); }
-    section { max-width:900px; margin:0 auto 60px; text-align:center; line-height:1.6; }
+    section { max-width:900px; margin:0 auto 60px auto; text-align:center; line-height:1.6; }
     section h2 { font-size:2rem; margin-bottom:20px; color:#dda0dd; }
     section p { font-size:1.1rem; }
     .services { display:flex; flex-wrap:wrap; justify-content:center; gap:30px; margin-top:20px; }
-    .service-box { background: rgba(44,44,44,0.9); border: 2px solid #800080; border-radius:20px; padding:25px; width:250px; transition:0.3s; }
-    .service-box:hover { transform:translateY(-10px); box-shadow:0 15px 30px rgba(128,0,128,0.6); }
-    .example-label { margin:15px 0; font-weight:bold; color:#dda0dd; font-size:1.2rem; cursor:pointer; transition:0.3s; }
-    .example-label:hover { color:#fff; text-shadow:0 0 10px #dda0dd,0 0 20px #800080,0 0 30px #dda0dd; }
+    .service-box { background:rgba(44,44,44,0.9); border:2px solid #800080; border-radius:20px; padding:25px; width:250px; transition: transform 0.3s, box-shadow 0.3s; }
+    .service-box:hover { transform: translateY(-10px); box-shadow:0 15px 30px rgba(128,0,128,0.6); }
+    .example-label { margin-bottom:15px; margin-top:20px; font-weight:bold; color:#dda0dd; font-size:1.2rem; transition:0.3s; }
+    .example-label:hover { color:#fff; text-shadow:0 0 10px #dda0dd,0 0 20px #800080,0 0 30px #dda0dd; cursor:pointer; }
     footer { background:#111; color:#888; padding:20px 10px; font-size:0.95rem; border-top:2px solid #800080; text-align:center; }
-    a { color:inherit; text-decoration:none; } a:hover { text-decoration:underline; }
-    .poll-btn { background: linear-gradient(135deg,#800080,#ff69b4); border:none; color:white; padding:12px 25px; margin:10px; font-size:1rem; border-radius:25px; cursor:pointer; transition:0.3s; box-shadow:0 5px 15px rgba(128,0,128,0.5); }
+    a { color:inherit; text-decoration:none; }
+    a:hover { text-decoration:underline; }
+    .poll-btn { background: linear-gradient(135deg, #800080, #ff69b4); border:none; color:white; padding:12px 25px; margin:10px; font-size:1rem; border-radius:25px; cursor:pointer; transition:0.3s; box-shadow:0 5px 15px rgba(128,0,128,0.5); }
     .poll-btn:hover { transform:scale(1.1); box-shadow:0 8px 20px rgba(255,105,180,0.7); }
-    .poll-bar { background:#800080; height:25px; border-radius:15px; margin:10px 0; color:white; text-align:center; line-height:25px; width:0; transition:width 1s; }
   </style>
 </head>
 <body>
   <canvas id="particles"></canvas>
-
   <header>𝑶𝑮_𝒌𝒖𝒔𝒉_𝒆𝒅𝒊𝒕</header>
-
   <nav>
     <a href="#about">About</a>
     <a href="#services">Services</a>
@@ -53,16 +43,13 @@
   </nav>
 
   <main>
-    <!-- About -->
+    <!-- About Section -->
     <section id="about">
       <h2>About 𝑶𝑮_𝒌𝒖𝒔𝒉_𝒆𝒅𝒊𝒕</h2>
-      <p>
-        OG_Kush_Edits is your premier destination for luxury video edits and cinematic content creation.
-        We specialize in transforming ordinary footage into visually stunning experiences with sleek, professional, and highly creative edits.
-      </p>
+      <p>OG_Kush_Edits is your premier destination for luxury video edits and cinematic content creation. We specialize in transforming ordinary footage into visually stunning experiences with sleek, professional, and highly creative edits. Our mission is to elevate your content, amplify your style, and make every frame an unforgettable moment.</p>
     </section>
 
-    <!-- Services -->
+    <!-- Services Section -->
     <section id="services">
       <h2>Our Services</h2>
       <div class="services">
@@ -81,7 +68,7 @@
       </div>
     </section>
 
-    <!-- Portfolio with scroll-play videos -->
+    <!-- Portfolio Section -->
     <section id="portfolio">
       <h2>Portfolio</h2>
       <p>Here are some examples of my awesome edits. Each video showcases creativity, style, and attention to detail.</p>
@@ -95,35 +82,62 @@
       </div>
     </section>
 
-    <!-- Real Poll Section -->
-    <section id="poll">
+    <!-- Poll Section -->
+    <section style="max-width:900px; margin:60px auto; text-align:center;">
       <h2 style="color:#dda0dd;">Be honest… did that edit hit different?</h2>
       <div style="margin-top:20px;">
         <button onclick="vote('yes')" class="poll-btn">Obviously 🔥</button>
         <button onclick="vote('no')" class="poll-btn">Not really 😶</button>
       </div>
-      <div id="yes-bar" class="poll-bar">0%</div>
-      <div id="no-bar" class="poll-bar">0%</div>
+      <p id="result" style="margin-top:20px; font-size:1.1rem;"></p>
     </section>
 
-    <!-- Contact -->
+    <!-- Contact Section -->
     <section id="contact">
       <h2>Contact</h2>
-      <p>For collaborations or inquiries, reach us at 
-        <a href="mailto:soumyadms30b@gmail.com" style="color:#ff69b4;">soumyadms30b@gmail.com</a>
-      </p>
+      <p>For collaborations or inquiries, reach us at <a href="mailto:soumyadms30b@gmail.com" style="color: #ff69b4;">soumyadms30b@gmail.com</a></p>
     </section>
 
     <!-- Tagline -->
-    <section>Elevate Your Vision. Transform Every Frame into Art.</section>
+    <section>
+      Elevate Your Vision. Transform Every Frame into Art.
+    </section>
   </main>
 
   <footer>© og_kush_edits | all rights reserved</footer>
 
-  <!-- Firebase SDK -->
+  <!-- Particle Script -->
+  <script>
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+    let particlesArray;
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      init();
+    });
+    class Particle {
+      constructor(x,y,size,speedX,speedY){this.x=x;this.y=y;this.size=size;this.speedX=speedX;this.speedY=speedY;}
+      update(){this.x+=this.speedX;this.y+=this.speedY;if(this.x>canvas.width||this.x<0)this.speedX=-this.speedX;if(this.y>canvas.height||this.y<0)this.speedY=-this.speedY;}
+      draw(){ctx.fillStyle='rgba(218,112,214,0.7)';ctx.beginPath();ctx.arc(this.x,this.y,this.size,0,Math.PI*2);ctx.fill();}
+    }
+    function init(){particlesArray=[];const numberOfParticles=Math.floor((canvas.width*canvas.height)/8000);for(let i=0;i<numberOfParticles;i++){let size=Math.random()*4+1;let x=Math.random()*canvas.width;let y=Math.random()*canvas.height;let speedX=(Math.random()-0.5)*1.5;let speedY=(Math.random()-0.5)*1.5;particlesArray.push(new Particle(x,y,size,speedX,speedY));}}
+    function animate(){ctx.clearRect(0,0,canvas.width,canvas.height);particlesArray.forEach(p=>{p.update();p.draw();});requestAnimationFrame(animate);}
+    init();animate();
+  </script>
+
+  <!-- Scroll-play for Portfolio videos -->
+  <script>
+    const portfolioVideos=[document.getElementById('example1'),document.getElementById('example2'),document.getElementById('example3')];
+    portfolioVideos.forEach(video=>{const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){video.play();}else{video.pause();}});},{threshold:0.5});observer.observe(video);});
+  </script>
+
+  <!-- Firebase + Real Poll -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
-    import { getFirestore, doc, getDoc, setDoc, updateDoc, arrayUnion } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
+    import { getFirestore, doc, getDoc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyA3-HMhnsv9rPft5N7OgI7nh_nQDq0kBCo",
@@ -133,115 +147,38 @@
       messagingSenderId: "258288099551",
       appId: "1:258288099551:web:7cd88c9a9f64af2c52c96a"
     };
-
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
-    async function vote(choice) {
+    async function vote(choice){
       const voterId = localStorage.getItem('voterId') || crypto.randomUUID();
-      localStorage.setItem('voterId', voterId);
+      localStorage.setItem('voterId',voterId);
 
-      const pollRef = doc(db, "polls", "globalPoll");
+      const pollRef = doc(db,"polls","globalPoll");
       const pollSnap = await getDoc(pollRef);
-
-      let data = { yes:0, no:0, voters:[] };
-      if(pollSnap.exists()) data = pollSnap.data();
+      let data={yes:0,no:0,voters:[]};
+      if(pollSnap.exists()) data=pollSnap.data();
 
       if(data.voters.includes(voterId)){
         alert("You have already voted!");
         return;
       }
 
-      data[choice] += 1;
+      data[choice]+=1;
       data.voters.push(voterId);
-
-      await setDoc(pollRef, data);
+      await setDoc(pollRef,data);
       updatePollBars(data);
     }
 
-    async function loadPoll() {
-      const pollRef = doc(db, "polls", "globalPoll");
-      const pollSnap = await getDoc(pollRef);
-      if(pollSnap.exists()) updatePollBars(pollSnap.data());
-    }
+    onSnapshot(doc(db,"polls","globalPoll"),snapshot=>{if(snapshot.exists()) updatePollBars(snapshot.data());});
 
     function updatePollBars(data){
-      const total = data.yes + data.no || 1;
-      const yesPercent = Math.round(data.yes / total * 100);
-      const noPercent = Math.round(data.no / total * 100);
-      const yesBar = document.getElementById('yes-bar');
-      const noBar = document.getElementById('no-bar');
-      yesBar.style.width = yesPercent + '%'; yesBar.textContent = yesPercent + '%';
-      noBar.style.width = noPercent + '%'; noBar.textContent = noPercent + '%';
+      const total=data.yes+data.no||1;
+      const yesPercent=Math.round((data.yes/total)*100);
+      const noPercent=Math.round((data.no/total)*100);
+      const result=document.getElementById("result");
+      result.innerHTML=`🔥 Yes: ${yesPercent}% | 😶 No: ${noPercent}%`;
     }
-
-    loadPoll();
-  </script>
-
-  <!-- Particle Script -->
-  <script>
-    const canvas = document.getElementById('particles');
-    const ctx = canvas.getContext('2d');
-    let particlesArray;
-
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    window.addEventListener('resize', () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      init();
-    });
-
-    class Particle {
-      constructor(x, y, size, speedX, speedY){
-        this.x=x; this.y=y; this.size=size; this.speedX=speedX; this.speedY=speedY;
-      }
-      update(){
-        this.x+=this.speedX; this.y+=this.speedY;
-        if(this.x>canvas.width||this.x<0)this.speedX=-this.speedX;
-        if(this.y>canvas.height||this.y<0)this.speedY=-this.speedY;
-      }
-      draw(){
-        ctx.fillStyle='rgba(218,112,214,0.7)';
-        ctx.beginPath(); ctx.arc(this.x,this.y,this.size,0,Math.PI*2); ctx.fill();
-      }
-    }
-
-    function init(){
-      particlesArray=[];
-      const num = Math.floor((canvas.width*canvas.height)/8000);
-      for(let i=0;i<num;i++){
-        let size=Math.random()*4+1;
-        let x=Math.random()*canvas.width;
-        let y=Math.random()*canvas.height;
-        let speedX=(Math.random()-0.5)*1.5;
-        let speedY=(Math.random()-0.5)*1.5;
-        particlesArray.push(new Particle(x,y,size,speedX,speedY));
-      }
-    }
-
-    function animate(){
-      ctx.clearRect(0,0,canvas.width,canvas.height);
-      particlesArray.forEach(p=>{p.update(); p.draw();});
-      requestAnimationFrame(animate);
-    }
-
-    init();
-    animate();
-  </script>
-
-  <!-- Scroll-play Portfolio Videos -->
-  <script>
-    const portfolioVideos = [document.getElementById('example1'),document.getElementById('example2'),document.getElementById('example3')];
-    portfolioVideos.forEach(video=>{
-      const observer = new IntersectionObserver(entries=>{
-        entries.forEach(entry=>{
-          if(entry.isIntersecting){ video.play(); } else { video.pause(); }
-        });
-      }, { threshold:0.5 });
-      observer.observe(video);
-    });
   </script>
 </body>
 </html>
